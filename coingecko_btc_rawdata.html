@@ -1,0 +1,43 @@
+
+<html>
+<head><title>Historical Hourly Price Data </title></head>
+<body>
+  <h2>Historical Hourly Price Data:</h2>
+  <table width=80%><tr><td valign=top width=40%>
+    <button onclick='getBtcData()'>Refresh Latest</button>
+    <p><br>
+    <b>From:</b>
+    <input id='fromTime' value='XXXX' size=10></input>
+    <p id='fromInfo'></p>
+    <br>
+    <b>To:</b>
+    <input id='toTime' value='XXXX' size=10></input>
+    <p id='toInfo'></p>
+    <br> 
+  </td></tr>
+</table>
+</body>
+<script>
+const getBtcData = async () => {
+  const response = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=USD&days=10&interval=hourly') + document.getElementById('cryptoCurr').value;
+  const json = await response.json();
+  const data = json.Data.Data
+  const times = data.map(obj => obj.time)
+  const prices = data.map(obj => obj.high)
+  var txt=""
+  for (var i=0;i<times.length;i++)
+  {
+    txt = txt + times[i] + "\t" + serialDateToNiceDate(times[i]/3600/24).toString().substr(0,24) + "\t" + prices[i] + "\n"
+  }
+  document.getElementById("txtout").value = txt
+  document.getElementById("fromTime").value = times[0]
+  document.getElementById("toTime").value = times[times.length-1]
+  document.getElementById("fromInfo").innerHTML = "<i>(" + serialDateToNiceDate(times[0]/3600/24).toString().substr(0,24) + ")</i>"
+  document.getElementById("toInfo").innerHTML = "<i>(" + serialDateToNiceDate(times[times.length-1]/3600/24).toString().substr(0,24)+ ")</i>"}
+
+getBtcData()
+function serialDateToNiceDate(date) {
+  return new Date(Math.round((date)*86400*1000));
+}
+</script>
+</html>

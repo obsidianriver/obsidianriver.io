@@ -41,7 +41,7 @@ const getBtcData = async () => {
   document.getElementById("fromInfo").innerHTML = "<i>(" + serialDateToNiceDate(times[0]/3600/24).toString().substr(0,24) + ")</i>"
   document.getElementById("toInfo").innerHTML = "<i>(" + serialDateToNiceDate(times[times.length-1]/3600/24).toString().substr(0,24)+ ")</i>"}
 const getBtcDataPrevious = async () => {
-  const response = await fetch('https://min-api.cryptocompare.com/data/v2/histohour?fsym=' + document.getElementById('cryptoCurr').value + '&tsym=USD&limit=2000&toTs=' + document.getElementById('fromTime').value + '&api_key=YOURAPIKEY');
+  const response = await fetch('https://min-api.cryptocompare.com/data/v2/histohour?fsym=' + document.getElementById('cryptoCurr').value + '&tsym=USD&limit=2000&toTs=' + document.getElementById('fromTime').value + '&api_key=29d2813e438fa2911f6008fad19475567952866757da7c695897cb82f1eefb42');
   const json = await response.json();  const data = json.Data.Data
   const times = data.map(obj => obj.time);  const prices = data.map(obj => obj.high)
   var txt=""  
