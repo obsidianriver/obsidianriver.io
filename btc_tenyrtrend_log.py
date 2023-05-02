@@ -38,6 +38,6 @@ for ax in axs:
 
 # Save the plots as files
 plt.tight_layout()
-axs[0].get_figure().savefig("bitcoin_market_cap_log.png")
-axs[1].get_figure().savefig("bitcoin_volume_log.png")
-axs[2].get_figure().savefig("bitcoin_price_log.png")
+axs[0].get_figure().savefig("bitcoin_market_cap_daily_tenyrtrend_log.png")
+axs[1].get_figure().savefig("bitcoin_volume__daily_tenyrtrend_log.png")
+axs[2].get_figure().savefig("bitcoin_price_daily_tenyrtrend_log.png")
