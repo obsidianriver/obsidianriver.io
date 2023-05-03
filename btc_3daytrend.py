@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 
 # Request data from Coingecko API
-url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=USD&days=3&interval=hourly"
+url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=USD&days=3&interval=daily"
 response = requests.get(url)
 data = response.json()
 
@@ -35,6 +35,4 @@ for ax in axs:
 
 # Save the plots as files
 plt.tight_layout()
-axs[0].get_figure().savefig("bitcoin_market_cap_hourly_3day.png")
-axs[1].get_figure().savefig("bitcoin_volume.png_hourly_3day")
-axs[2].get_figure().savefig("bitcoin_price.png_hourly_3day")
+axs[0].get_figure().savefig("bitcoin_marketsummary_3day.png")
